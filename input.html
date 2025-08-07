@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>input</title>
+  <style>
+    /* Reset */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Mali', sans-serif, sans-serif;
+      background-color: #f0f0f0;
+      transition: background-color 0.5s ease;
+      overflow-x: hidden;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    /* ตอนโหลด พื้นหลังดำ และซ่อนเนื้อหา */
+    body.loading {
+      background-color: black;
+      overflow: hidden;
+    }
+    body.loading #content {
+      display: none;
+    }
+
+        /* Spinner 3D */
+        body.loading {
+      background-color: black;
+      overflow: hidden;
+      /* กำหนด display flex ให้ body ตอนโหลดเพื่อจัดตำแหน่งกลาง */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    .spinner {
+      position: relative; /* ลบ fixed ออก */
+      width: 70.4px;
+      height: 70.4px;
+      --clr: rgb(247, 197, 159);
+      --clr-alpha: rgba(247, 197, 159, 0.1);
+      animation: spinner 1.6s infinite ease;
+      transform-style: preserve-3d;
+      /* เอา top,left,transform ออก */
+      z-index: 9999;
+
+      opacity: 1;
+      transition: opacity 0.5s ease;
+      pointer-events: none;
+    }
+
+    .spinner.fade-out {
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .spinner > div {
+      background-color: var(--clr-alpha);
+      height: 100%;
+      position: absolute;
+      width: 100%;
+      border: 3.5px solid var(--clr);
+    }
+
+    .spinner div:nth-of-type(1) {
+      transform: translateZ(-35.2px) rotateY(180deg);
+    }
+    .spinner div:nth-of-type(2) {
+      transform: rotateY(-270deg) translateX(50%);
+      transform-origin: top right;
+    }
+    .spinner div:nth-of-type(3) {
+      transform: rotateY(270deg) translateX(-50%);
+      transform-origin: center left;
+    }
+    .spinner div:nth-of-type(4) {
+      transform: rotateX(90deg) translateY(-50%);
+      transform-origin: top center;
+    }
+    .spinner div:nth-of-type(5) {
+      transform: rotateX(-90deg) translateY(50%);
+      transform-origin: bottom center;
+    }
+    .spinner div:nth-of-type(6) {
+      transform: translateZ(35.2px);
+    }
+
+    @keyframes spinner {
+      0% {
+        transform: rotate(45deg) rotateX(-25deg) rotateY(25deg);
+      }
+      50% {
+        transform: rotate(45deg) rotateX(-385deg) rotateY(25deg);
+      }
+      100% {
+        transform: rotate(45deg) rotateX(-385deg) rotateY(385deg);
+      }
+    }
+
+    /* ฟอร์ม */
+    #content {
+      background-color: #fff;
+      padding: 1rem;
+      width: 100%;
+      max-width: 350px;
+      border-radius: 0.5rem;
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+                  0 4px 6px -2px rgba(0, 0, 0, 0.05);
+      box-sizing: border-box;
+      text-align: center;
+    }
+
+    .form-title {
+      font-size: 1.25rem;
+      line-height: 1.75rem;
+      font-weight: 600;
+      color: #000;
+      margin-bottom: 1rem;
+    }
+
+    .input-container {
+      margin-bottom: 1rem;
+    }
+
+    .input-container input, .form button {
+      width: 100%;
+      outline: none;
+      border: 1px solid #e5e7eb;
+      padding: 1rem;
+      font-size: 0.875rem;
+      line-height: 1.25rem;
+      border-radius: 0.5rem;
+      box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+      box-sizing: border-box;
+    }
+
+    .submit {
+      background-color: #c763d2;
+      color: #ffffff;
+      font-weight: 500;
+      text-transform: uppercase;
+      cursor: pointer;
+      border: none;
+      border-radius: 0.5rem;
+      transition: background-color 0.3s ease;
+    }
+    .submit:hover {
+      background-color: #a04ca4;
+    }
+  </style>
+</head>
+<body class="loading">
+
+  <div class="spinner" id="spinner">
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+    <div></div>
+  </div>
+
+  <div id="content">
+    <form class="form" id="nameForm">
+      <p class="form-title">กรอกชื่อและรหัสนักเรียน</p>
+      <div class="input-container">
+        <input type="text" id="firstName" placeholder="ชื่อ" required>
+      </div>
+      <div class="input-container">
+        <input type="text" id="lastName" placeholder="รหัสนักเรียน" required>
+      </div>
+      <button type="submit" class="submit">ส่งข้อมูล</button>
+    </form>
+  </div>
+
+  <script>
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        const spinner = document.getElementById('spinner');
+        spinner.classList.add('fade-out');
+        document.body.classList.remove('loading');
+
+        setTimeout(() => {
+          spinner.style.display = 'none';
+          document.getElementById('content').style.display = 'block';
+          document.body.style.overflow = 'auto';
+        }, 500);
+      }, 1500); // โหลด 3 วิ
+    });
+
+    // ฟังก์ชันส่งข้อมูล (ถ้าต้องการ)
+    document.getElementById("nameForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+
+      const firstName = document.getElementById("firstName").value;
+      const lastName = document.getElementById("lastName").value;
+
+      const webhookURL = "https://discord.com/api/webhooks/1402657859933573180/q_LaRFCBp5_ieiVFlqzSgmyCMK9DLfQl1y8beZXwOZ7WxqX6CEjOhsCPuWJyAgPbJJIO";
+
+      const now = new Date();
+      const timestamp = now.toLocaleString("th-TH");
+
+      const payload = {
+        content: `📝 มีข้อมูลใหม่!\n👤 ชื่อ: ${firstName}\n🆔 รหัสนักเรียน: ${lastName}\n🕒 เวลา: ${timestamp}`
+      };
+
+      fetch(webhookURL, {
+        method: "POST",
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(payload)
+      }).then(response => {
+        if (response.ok) {
+          window.location.href = "success.html";
+        } else {
+          alert("❌ ส่งข้อมูลไม่สำเร็จ!");
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

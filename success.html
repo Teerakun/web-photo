@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>download photo</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      background-color: #f3f4f6;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 20px;
+    }
+
+    .container {
+      background-color: white;
+      padding: 20px;
+      border-radius: 0.75rem;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      width: 100%;
+      max-width: 400px;
+      max-height: 360px;
+      overflow-y: auto;
+      scroll-behavior: smooth;
+    }
+
+    .item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      padding: 10px;
+      background-color: #f9fafb;
+      border: 1px solid #e5e7eb;
+      border-radius: 0.5rem;
+      height: 80px;
+      transition: transform 0.3s ease;
+    }
+
+    .item:hover {
+      transform: scale(1.01);
+    }
+
+    .item .date {
+      font-weight: bold;
+      font-size: 0.9rem;
+      flex: 1;
+    }
+
+    .item .label {
+      flex: 1;
+      text-align: center;
+      font-size: 0.9rem;
+    }
+
+    .item .download {
+      flex: 1;
+      text-align: right;
+    }
+
+    .download a {
+      text-decoration: none;
+      background-color: #6366f1;
+      color: white;
+      padding: 6px 12px;
+      border-radius: 6px;
+      font-size: 0.8rem;
+    }
+
+    .container::-webkit-scrollbar {
+      width: 8px;
+    }
+
+    .container::-webkit-scrollbar-thumb {
+      background-color: #cbd5e0;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 500px) {
+      body {
+        padding-top: 30px;
+        align-items: center;
+      }
+
+      .container {
+        max-height: 360px;
+      }
+    }
+
+    h2 {
+    font-size: 1.5rem;
+    color: #374151;
+    font-weight: bold;
+    }
+
+  </style>
+</head>
+<body>
+  <div>
+    <h2 style="text-align: center; margin-bottom: 10px;">Download Photo</h2>
+    <div class="container">
+      <div class="item">
+        <div class="date">7 Aug 2025</div>
+        <div class="label">📷 #1</div>
+        <div class="download"><a href="https://drive.google.com/drive/folders/1qPVp0PlkXSt7hWyagYNpRT2z623k1Zzu">Download</a></div>
+      </div>
+      <div class="item">
+        <div class="date">6 Aug 2025</div>
+        <div class="label">📷 #2</div>
+        <div class="download"><a href="https://drive.google.com/drive/folders/1PEni-TK4IPwvfMwOO5VLKAiYMF5zIEl8">Download</a></div>
+      </div>
+      <div class="item">
+        <div class="date">6 Aug 2025 </div>
+        <div class="label">📷 #1</div>
+        <div class="download"><a href="https://drive.google.com/drive/folders/1S_CJ8koawnrPfSNH7iF3UNSRc6CLndLL">Download</a></div>
+      </div>
+      <div class="item">
+        <div class="date">5 Aug 2025</div>
+        <div class="label">📷 #1</div>
+        <div class="download"><a href="https://drive.google.com/drive/folders/1v9Kz1n0uJWaVIZaCeQpaUzSkdrNyq3nD">Download</a></div>
+      </div>
+      <div class="item">
+        <div class="date">4 Aug 2025</div>
+        <div class="label">📷 #1</div>
+        <div class="download"><a href="#">Download</a></div>
+      </div>
+      <div class="item">
+        <div class="date">3 Aug 2025</div>
+        <div class="label">📷 #1</div>
+        <div class="download"><a href="#">Download</a></div>
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>
